@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>유중경 · YOU GAIT</title>
+<meta name="description" content="걸음 읽어주는 사람, 유중경의 페이지. 보행과 러닝 자세를 보고, 측정해 보고, 한 가지씩 바꿔 봅니다.">
+<meta name="theme-color" content="#0c0e0d">
+<meta property="og:title" content="유중경 · YOU GAIT">
+<meta property="og:description" content="걸음을 보고, 측정해 보고, 한 가지씩 바꿔 봅니다.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c0e0d'/%3E%3Cpath d='M8 40 C20 28 28 46 40 34 S56 26 58 30' stroke='%235cf2b4' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#0c0e0d; --bg2:#111412; --line:#242826;
+    --wh:#f4f5f4; --g1:#c4c8c6; --g2:#7c827f;
+    --mint:#5cf2b4; --mint-soft:rgba(92,242,180,.12);
+    --r:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg); color:var(--g1);
+    font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    font-size:17px; line-height:1.7; word-break:keep-all; overflow-x:hidden;
+  }
+  body::before{ /* 오른쪽 위 민트 빛 */
+    content:""; position:fixed; top:-30vmax; right:-25vmax; width:70vmax; height:70vmax; pointer-events:none;
+    background:radial-gradient(circle, rgba(92,242,180,.10) 0%, rgba(92,242,180,0) 60%); z-index:0;
+  }
+  a{color:inherit}
+  .wrap{position:relative; z-index:1; max-width:980px; margin:0 auto; padding:0 20px}
+  .label{font-size:12.5px; font-weight:600; letter-spacing:.22em; color:var(--g2); text-transform:uppercase}
+  .mint{color:var(--mint)}
+
+  /* top bar */
+  header.top{display:flex; justify-content:space-between; align-items:center; padding:22px 0}
+  .mark{display:flex; gap:10px; align-items:center; font-weight:700; letter-spacing:.14em; color:var(--wh); font-size:13px; text-decoration:none}
+  .mark svg{width:26px;height:26px}
+  nav a{font-size:14px; color:var(--g2); text-decoration:none; margin-left:18px}
+  nav a:hover{color:var(--wh)}
+
+  /* hero */
+  .hero{padding:9vh 0 0; min-height:86vh; display:flex; flex-direction:column}
+  .hero h1{font-size:clamp(56px,13vw,128px); line-height:1.02; color:var(--wh); font-weight:800; letter-spacing:-.03em; margin:18px 0 22px}
+  .hero p.lead{font-size:clamp(19px,2.6vw,24px); color:var(--g1); max-width:30em}
+  .hero p.lead b{color:var(--wh); font-weight:600}
+  .gait{margin-top:auto; width:100vw; position:relative; left:50%; transform:translateX(-50%); height:200px; overflow:visible}
+  .gait svg{width:100%; height:100%; display:block}
+  .gait .core{stroke-dasharray:2400; stroke-dashoffset:2400; animation:draw 3.2s cubic-bezier(.6,.1,.2,1) .3s forwards}
+  .gait .halo,.gait .glow{opacity:0; animation:fade 1.2s ease 2.4s forwards}
+  .gait .fp{opacity:0; animation:step .5s ease forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes fade{to{opacity:1}}
+  @keyframes step{from{opacity:0; transform:translateY(4px)} to{opacity:.55; transform:none}}
+  .scroll{font-size:13px; color:var(--g2); padding:6px 0 26px; letter-spacing:.1em}
+
+  section{padding:96px 0; border-top:1px solid var(--line)}
+  h2{font-size:clamp(30px,5vw,44px); line-height:1.25; color:var(--wh); font-weight:700; letter-spacing:-.02em; margin:14px 0 26px}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .card{background:var(--bg2); border:1px solid var(--line); border-radius:var(--r); padding:28px 26px}
+  .card h3{color:var(--wh); font-size:21px; margin:10px 0 10px; font-weight:700}
+  .card p{font-size:16px}
+  .vs{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px}
+  .vs div{border-radius:14px; padding:14px 14px; background:#0e100f; border:1px solid var(--line); font-size:14px; line-height:1.55}
+  .vs div strong{display:block; color:var(--wh); font-size:15px; margin-bottom:4px}
+  .vs div.on{border-color:rgba(92,242,180,.35); background:var(--mint-soft)}
+  .vs div.on strong{color:var(--mint)}
+  .tag{display:inline-block; font-size:12px; font-weight:600; letter-spacing:.08em; padding:4px 10px; border-radius:99px; border:1px solid var(--line); color:var(--g2)}
+
+  /* cadence tapper */
+  .tapper{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center}
+  .pad{
+    position:relative; aspect-ratio:1/1; width:100%; max-width:340px; margin:0 auto; border-radius:50%;
+    border:1px solid rgba(92,242,180,.35); background:radial-gradient(circle at 50% 45%, rgba(92,242,180,.16), rgba(92,242,180,.02) 62%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; user-select:none; -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent; touch-action:manipulation; color:var(--wh); font:inherit;
+    transition:transform .08s ease;
+  }
+  .pad:active{transform:scale(.97)}
+  .pad:focus-visible{outline:2px solid var(--mint); outline-offset:6px}
+  .pad .num{font-size:clamp(64px,14vw,92px); font-weight:800; line-height:1; letter-spacing:-.03em}
+  .pad .unit{font-size:14px; color:var(--g2); letter-spacing:.14em; margin-top:8px}
+  .pad .hint{font-size:15px; color:var(--g1); margin-top:14px}
+  .pad .ring{position:absolute; inset:-1px; border-radius:50%; border:2px solid var(--mint); opacity:0; pointer-events:none}
+  .pad .ring.go{animation:ring .5s ease-out}
+  @keyframes ring{from{opacity:.7; transform:scale(1)} to{opacity:0; transform:scale(1.12)}}
+  .dots{display:flex; gap:6px; justify-content:center; margin-top:18px}
+  .dots i{width:8px; height:8px; border-radius:50%; background:var(--line); transition:background .15s}
+  .dots i.on{background:var(--mint)}
+  .reset{display:block; margin:16px auto 0; background:none; border:1px solid var(--line); color:var(--g2); font:inherit; font-size:14px; padding:8px 18px; border-radius:99px; cursor:pointer}
+  .reset:hover{color:var(--wh); border-color:var(--g2)}
+  .read{font-size:16px}
+  .read .out{margin-top:18px; padding:18px 18px; border-left:2px solid var(--mint); background:var(--mint-soft); border-radius:0 14px 14px 0; color:var(--wh); min-height:84px}
+  .small{font-size:13.5px; color:var(--g2); margin-top:14px}
+
+  /* now */
+  ol.steps{list-style:none; counter-reset:s; display:grid; gap:12px; margin-top:8px}
+  ol.steps li{counter-increment:s; display:grid; grid-template-columns:44px 1fr; gap:14px; align-items:start; padding:18px 0; border-bottom:1px solid var(--line)}
+  ol.steps li::before{content:counter(s,decimal-leading-zero); font-weight:700; color:var(--mint); font-size:15px; letter-spacing:.06em; padding-top:2px}
+  ol.steps b{color:var(--wh); font-weight:600}
+
+  footer{padding:56px 0 calc(48px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); font-size:14px; color:var(--g2)}
+  footer .q{font-size:clamp(22px,3.4vw,30px); color:var(--wh); font-weight:700; line-height:1.4; margin-bottom:28px}
+  footer .row{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1; transform:none}
+
+  @media (max-width:720px){
+    body{font-size:16px}
+    nav{display:none}
+    .two,.tapper{grid-template-columns:1fr}
+    section{padding:72px 0}
+    .hero{min-height:auto; padding-top:6vh}
+    .gait{height:150px; margin-top:48px}
+    .card{padding:24px 20px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important; transition:none!important}
+    .gait .core{stroke-dashoffset:0} .gait .halo,.gait .glow{opacity:1} .gait .fp{opacity:.55}
+    .reveal{opacity:1; transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" aria-label="맨 위로">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#151816"/><path d="M8 40 C20 28 28 46 40 34 S56 26 58 30" stroke="#5cf2b4" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+      YOU GAIT
+    </a>
+    <nav aria-label="페이지 안 이동">
+      <a href="#read">걸음 읽기</a>
+      <a href="#work">하는 일</a>
+      <a href="#now">이번 학기</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="label">걸음 읽어주는 사람</div>
+      <h1>유중경</h1>
+      <p class="lead">걸음을 <b>보고</b>, <b>측정해 보고</b>, <span class="mint">한 가지씩</span> 바꿔 봅니다.<br>보행과 러닝 자세를 읽는 일을 하고, 그걸 읽어 주는 도구를 만듭니다.</p>
+
+      <div class="gait" aria-hidden="true">
+        <svg viewBox="0 0 1600 200" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="b14" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+            <filter id="b3" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+            <g id="foot">
+              <ellipse cx="0" cy="-6" rx="7.5" ry="11" transform="rotate(-8)"/>
+              <ellipse cx="1" cy="13" rx="5.5" ry="6.5"/>
+              <circle cx="-6" cy="-21" r="2.4"/><circle cx="-2" cy="-23.5" r="2.4"/><circle cx="2.4" cy="-23.6" r="2.2"/><circle cx="6" cy="-22" r="2"/><circle cx="8.6" cy="-19" r="1.8"/>
+            </g>
+          </defs>
+          <path class="glow" filter="url(#b14)" d="M0 110 C 160 70, 260 150, 420 110 S 680 70, 840 110 S 1100 150, 1260 110 S 1480 80, 1600 100" stroke="rgb(70,200,150)" stroke-opacity=".18" stroke-width="30" fill="none"/>
+          <path class="halo" filter="url(#b3)" d="M0 110 C 160 70, 260 150, 420 110 S 680 70, 840 110 S 1100 150, 1260 110 S 1480 80, 1600 100" stroke="rgb(90,235,175)" stroke-opacity=".45" stroke-width="10" fill="none"/>
+          <path class="core" d="M0 110 C 160 70, 260 150, 420 110 S 680 70, 840 110 S 1100 150, 1260 110 S 1480 80, 1600 100" stroke="rgb(178,247,219)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <g fill="#5cf2b4" id="trail"></g>
+        </svg>
+      </div>
+      <div class="scroll">↓ 아래로</div>
+    </div>
+
+    <section id="read" class="reveal">
+      <div class="label">한번 해 보기</div>
+      <h2>당신의 걸음, <span class="mint">분당 몇 걸음</span>일까요?</h2>
+      <div class="tapper">
+        <div>
+          <button class="pad" id="pad" type="button" aria-describedby="padhint">
+            <span class="ring" id="ring"></span>
+            <span class="num" id="num">—</span>
+            <span class="unit">STEPS / MIN</span>
+            <span class="hint" id="padhint">발이 땅에 닿을 때마다 탭</span>
+          </button>
+          <div class="dots" id="dots" aria-hidden="true"></div>
+          <button class="reset" id="reset" type="button">다시 하기</button>
+        </div>
+        <div class="read">
+          <p>제자리에서 가볍게 걷거나 뛰면서, 발이 닿는 박자에 맞춰 동그라미를 눌러 보세요. 스페이스바도 됩니다. 열 번 누르면 분당 걸음 수(케이던스)를 계산합니다.</p>
+          <div class="out" id="out" aria-live="polite">아직 읽은 걸음이 없어요.</div>
+          <p class="small">이 숫자는 재미로 보는 값이고, 좋고 나쁨을 판단하지 않습니다. 기록은 이 브라우저 밖으로 나가지 않습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="reveal">
+      <div class="label">하는 일</div>
+      <h2>걸음을 읽고,<br>읽어 주는 도구를 만듭니다</h2>
+      <div class="two">
+        <div class="card">
+          <span class="tag">KNEECH · 니치</span>
+          <h3>무릎에 차는 러닝 센서</h3>
+          <p>스마트워치가 "얼마나 달렸는지"를 알려 준다면, 니치는 "어떻게 달렸는지"를 봅니다.</p>
+          <div class="vs">
+            <div><strong>워치</strong>거리 · 페이스 · 심박 · 칼로리</div>
+            <div class="on"><strong>니치</strong>착지 습관 · 좌우 균형 · 무릎 움직임 범위</div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="tag">PHYSIO</span>
+          <h3>보행 분석 회사, 피지오</h3>
+          <p>사람이 걷고 뛰는 모습을 숫자로 읽는 일을 합니다. 러닝크루와 행사 부스에서 러너를 직접 만나 측정해 보고, 그 경험으로 도구를 다시 고칩니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="now" class="reveal">
+      <div class="label">이번 학기 · KAIST BIZ.69911 · 14조</div>
+      <h2>러닝자세 <span class="mint">AI 코칭</span></h2>
+      <p>측정 결과를 받아도 다음 러닝에서 무엇을 바꿀지 모르는 러너가 많다고 생각합니다. 정말 그런지, 팀원들과 함께 확인하고 있어요.</p>
+      <ol class="steps">
+        <li><div><b>측정한다</b> · 마라톤 행사 부스에서 러너의 달리는 모습을 니치로 잽니다.</div></li>
+        <li><div><b>읽어 준다</b> · 숫자의 뜻과 어디까지 믿을 수 있는지를 쉬운 말로 설명합니다.</div></li>
+        <li><div><b>한 가지만</b> · 근거가 충분할 때만, 다음 러닝에서 해 볼 행동 하나를 제안합니다.</div></li>
+        <li><div><b>물어본다</b> · 체험한 러너에게 정말 도움이 됐는지, 살 생각이 있는지 직접 묻습니다.</div></li>
+      </ol>
+      <p class="small">팀: 유중경 · 백승윤 · 이서윤 · 장현아</p>
+    </section>
+  </main>
+
+  <footer>
+    <p class="q">오늘 달릴 때,<br>내 발소리를 한번 세어 보면 어떨까요?</p>
+    <div class="row">
+      <span>© 2026 유중경 · YOU GAIT</span>
+      <span>이 페이지는 Claude Code와 함께 만들었습니다.</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // 걸음 선 위에 왼발·오른발 발자국을 번갈아 찍는다
+  var trail=document.getElementById('trail'), NS='http://www.w3.org/2000/svg';
+  var path=document.querySelector('.gait .core');
+  if(path && trail && path.getTotalLength){
+    var L=path.getTotalLength(), gap=130, i=0;
+    for(var d=60; d<L-30; d+=gap, i++){
+      var p=path.getPointAtLength(d), q=path.getPointAtLength(Math.min(L,d+2));
+      var ang=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;
+      var side=(i%2?1:-1), off=26*side;
+      var nx=-Math.sin(ang*Math.PI/180)*off, ny=Math.cos(ang*Math.PI/180)*off;
+      var g=document.createElementNS(NS,'g');
+      g.setAttribute('transform','translate('+(p.x+nx).toFixed(1)+' '+(p.y+ny).toFixed(1)+') rotate('+(ang+90).toFixed(1)+')'+(side>0?' scale(-1 1)':''));
+      var u=document.createElementNS(NS,'use'); u.setAttribute('href','#foot');
+      g.appendChild(u);
+      var w=document.createElementNS(NS,'g'); w.setAttribute('class','fp'); w.style.animationDelay=(0.6+i*0.22)+'s';
+      w.appendChild(g); trail.appendChild(w);
+    }
+  }
+
+  // 케이던스 탭
+  var N=10, taps=[], pad=document.getElementById('pad'), num=document.getElementById('num'),
+      out=document.getElementById('out'), dots=document.getElementById('dots'), ring=document.getElementById('ring');
+  for(var k=0;k<N;k++){dots.appendChild(document.createElement('i'))}
+  function paint(){
+    var ds=dots.children; for(var k=0;k<N;k++){ds[k].className=k<taps.length?'on':''}
+  }
+  function read(spm){
+    if(spm<100) return '분당 '+spm+'걸음. 천천히 걷는 박자에 가까워요. 조금 빠르게 걷거나 뛰면서 한 번 더 세어 볼까요?';
+    if(spm<140) return '분당 '+spm+'걸음. 걷는 박자예요. 이번엔 가볍게 뛰면서 세어 보면 숫자가 어떻게 달라질까요?';
+    if(spm<200) return '분당 '+spm+'걸음. 달리는 박자예요. 같은 속도에서 보폭을 조금 줄이면 이 숫자는 어떻게 바뀔까요?';
+    return '분당 '+spm+'걸음. 꽤 빠른 박자네요. 탭이 발보다 앞서지는 않았는지 한 번 더 세어 볼까요?';
+  }
+  function tap(){
+    var t=performance.now();
+    if(taps.length && t-taps[taps.length-1]>2500){taps=[]}
+    if(taps.length>=N){taps=[]}
+    taps.push(t); paint();
+    ring.classList.remove('go'); void ring.offsetWidth; ring.classList.add('go');
+    if(taps.length>=2){
+      var span=(taps[taps.length-1]-taps[0])/(taps.length-1);
+      var spm=Math.round(60000/span);
+      num.textContent=spm;
+      if(taps.length===N){ out.textContent=read(spm); }
+      else { out.textContent='읽는 중… '+(N-taps.length)+'번 더'; }
+    } else { num.textContent='·'; out.textContent='좋아요, 계속 박자에 맞춰 눌러 주세요.'; }
+  }
+  pad.addEventListener('pointerdown',function(e){e.preventDefault(); tap();});
+  pad.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){e.preventDefault(); if(!e.repeat) tap();} });
+  document.addEventListener('keydown',function(e){ if(e.key===' '&&document.activeElement===document.body){e.preventDefault(); if(!e.repeat) tap();} });
+  document.getElementById('reset').addEventListener('click',function(){taps=[]; paint(); num.textContent='—'; out.textContent='아직 읽은 걸음이 없어요.';});
+
+  // 스크롤하면 섹션이 나타난다
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})},{threshold:.12});
+    els.forEach(function(el){io.observe(el)});
+  } else { els.forEach(function(el){el.classList.add('in')}); }
+})();
+</script>
+</body>
+</html>
