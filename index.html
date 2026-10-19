@@ -180,7 +180,15 @@
 
   /* gait cycle: 8 phases */
   .gc{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:40px; align-items:center; margin-top:56px}
-  .gc-fig{position:relative; background:radial-gradient(ellipse at 50% 55%, #23262c 0%, var(--datum) 70%); border:1px solid var(--drule); border-radius:4px; aspect-ratio:1/1.05}
+  .gc-fig{position:relative; background:radial-gradient(ellipse at 50% 38%, #12302d 0%, #081514 55%, #030707 100%); border:1px solid #16302c; border-radius:4px; aspect-ratio:1/1.05; overflow:hidden}
+  .gc-fig .o{fill:none; stroke:#3FD9B8; stroke-linecap:round; stroke-linejoin:round}
+  .gc-fig .i{fill:none; stroke:#E6FFF7; stroke-opacity:.55; stroke-linecap:round; stroke-linejoin:round}
+  .gc-fig .near .o{stroke-width:14} .gc-fig .near .i{stroke-width:4}
+  .gc-fig .far .o{stroke:#1B6457; stroke-width:12} .gc-fig .far .i{stroke:#5FBFAE; stroke-opacity:.3; stroke-width:3}
+  .gc-fig #armA .o{stroke:#7DF7DA; stroke-width:10} .gc-fig #armA .i{stroke-width:3.5; stroke-opacity:.8} .gc-fig #armB .o{stroke-width:9}
+  .gc-fig #torso{stroke:#34CFAE; stroke-width:30; stroke-linecap:round} .gc-fig #torsoHi{stroke:#E6FFF7; stroke-opacity:.28; stroke-width:6; stroke-linecap:round}
+  .gc-fig #neck{stroke:#34CFAE; stroke-width:11; stroke-linecap:round} .gc-fig #head{fill:#3FD9B8}
+  .gc-fig .tag{color:#7FB8AD}
   .gc-fig svg{width:100%; height:100%; display:block}
   .gc-fig .tag{position:absolute; left:16px; bottom:12px; font-size:12px; color:var(--d2); letter-spacing:.04em}
   .gc-chart svg{width:100%; height:auto; display:block}
@@ -411,14 +419,28 @@
       <div class="gc">
         <div class="gc-fig">
           <span class="tag">KNEE SENSOR · 무릎 정중앙</span>
-          <svg viewBox="0 0 300 330" role="img" aria-label="보행 주기에 따라 움직이는 다리 그림">
-            <line x1="20" y1="290" x2="280" y2="290" stroke="#3a3d44" stroke-width="2"/>
-            <g id="legB" stroke="#4a4d55" stroke-width="13" stroke-linecap="round" fill="none"><path/></g>
-            <line id="torso" stroke="#8C8E96" stroke-width="13" stroke-linecap="round"/>
-            <circle id="head" r="15" fill="#8C8E96"/>
-            <g id="legA" stroke="#F2F2F4" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"><path/></g>
-            <g id="sensor"><rect x="-9" y="-12" width="18" height="24" rx="5" fill="#15171A" stroke="#00FF7F" stroke-width="2"/><rect x="-1.5" y="-6" width="3" height="12" rx="1.5" fill="#00FF7F"/></g>
+          <svg viewBox="0 0 300 330" role="img" aria-label="보행 주기에 따라 걷는 사람 그림, 무릎 정중앙에 센서">
+            <defs>
+              <filter id="gl" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 1  0 0 0 0 .72  0 0 0 .85 0" result="c"/><feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <linearGradient id="flr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0D1D1C"/><stop offset="1" stop-color="#020505"/></linearGradient>
+              <linearGradient id="rfade" x1="0" y1="290" x2="0" y2="330" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <mask id="rmask" maskUnits="userSpaceOnUse" x="0" y="290" width="300" height="40"><rect x="0" y="290" width="300" height="40" fill="url(#rfade)"/></mask>
+            </defs>
+            <g stroke="#7FE9D4" stroke-opacity=".05"><line x1="25" y1="0" x2="25" y2="290"/><line x1="50" y1="0" x2="50" y2="290"/><line x1="75" y1="0" x2="75" y2="290"/><line x1="100" y1="0" x2="100" y2="290"/><line x1="125" y1="0" x2="125" y2="290"/><line x1="150" y1="0" x2="150" y2="290"/><line x1="175" y1="0" x2="175" y2="290"/><line x1="200" y1="0" x2="200" y2="290"/><line x1="225" y1="0" x2="225" y2="290"/><line x1="250" y1="0" x2="250" y2="290"/><line x1="275" y1="0" x2="275" y2="290"/></g>
+            <rect x="0" y="290" width="300" height="40" fill="url(#flr)"/>
+            <line x1="0" y1="290" x2="300" y2="290" stroke="#4FE3C1" stroke-opacity=".28"/>
+            <g id="fig" filter="url(#gl)">
+              <g id="armB" class="far"><path class="o"/><path class="i"/></g>
+              <g id="legB" class="far"><path class="o"/><path class="i"/></g>
+              <line id="torso"/><line id="torsoHi"/><line id="neck"/>
+              <ellipse id="head" rx="13" ry="15"/>
+              <g id="legA" class="near"><path class="o"/><path class="i"/></g>
+              <g id="armA" class="near"><path class="o"/><path class="i"/></g>
+            </g>
+            <g mask="url(#rmask)"><use href="#fig" transform="translate(0 580) scale(1 -1)"/></g>
+            <g id="sensor"><rect x="-9" y="-12" width="18" height="24" rx="5" fill="#0B1514" stroke="#00FF7F" stroke-width="2"/><rect x="-1.5" y="-6" width="3" height="12" rx="1.5" fill="#00FF7F"/></g>
           </svg>
+
         </div>
         <div>
           <div class="gc-chart">
@@ -503,6 +525,7 @@
         <div class="block">
           <h4>PRESS &amp; RESEARCH</h4>
           <ul>
+            <li><span>영상</span><div><b><a href="https://www.youtube.com/watch?v=4hSplS0eBl0&amp;t=95s" target="_blank" rel="noopener">총리실TV</a></b><em>출연 · 1분 35초부터</em></div></li>
             <li><span>2026.09</span><div><b>SK하이닉스 뉴스룸</b><em>사회적가치페스타 협력기업 성과 공유</em></div></li>
             <li><span>2026.02</span><div><b>한경매거진</b></div></li>
             <li><span>2025.11</span><div><b>CJB 청주방송</b></div></li>
@@ -616,7 +639,8 @@
   function pathFor(g,hy){
     return 'M'+HX+' '+hy.toFixed(1)+' L'+(HX+g.kx).toFixed(1)+' '+(hy+g.ky).toFixed(1)+' L'+(HX+g.ax).toFixed(1)+' '+(hy+g.ay).toFixed(1)+' L'+(HX+g.fx).toFixed(1)+' '+(hy+g.fy).toFixed(1);
   }
-  var legA=document.querySelector('#legA path'), legB=document.querySelector('#legB path'), torso=document.getElementById('torso'),
+  var legA=document.querySelectorAll('#legA path'), legB=document.querySelectorAll('#legB path'), armA=document.querySelectorAll('#armA path'), armB=document.querySelectorAll('#armB path'),
+      torso=document.getElementById('torso'), torsoHi=document.getElementById('torsoHi'), neck=document.getElementById('neck'),
       head=document.getElementById('head'), sensor=document.getElementById('sensor'), curve=document.getElementById('curve'),
       dot=document.getElementById('dot'), cursor=document.getElementById('cursor'), bands=document.getElementById('bands'), chips=document.getElementById('chips');
   var X0=44, X1=590, Y0=210, YS=160/60;
@@ -653,11 +677,19 @@
     bandEls.forEach(function(r,j){r.setAttribute('fill', j===i?'rgba(0,255,127,.10)':(j%2?'rgba(255,255,255,.035)':'rgba(255,255,255,0)'))});
     numEls.forEach(function(t,j){t.setAttribute('class', j===i?'num on':'num')});
   }
+  function setD(list,d){ for(var i=0;i<list.length;i++) list[i].setAttribute('d',d); }
+  function line(el,x1,y1,x2,y2){ el.setAttribute('x1',x1); el.setAttribute('y1',y1.toFixed(1)); el.setAttribute('x2',x2); el.setAttribute('y2',y2.toFixed(1)); }
+  function armPath(h,sx,sy){ // 팔은 같은 쪽 다리와 반대로 흔들린다
+    var t=-0.95*h, f=t+48*R, ex=sx+44*Math.sin(t), ey=sy+44*Math.cos(t), wx=ex+38*Math.sin(f), wy=ey+38*Math.cos(f);
+    return 'M'+sx+' '+sy.toFixed(1)+' L'+ex.toFixed(1)+' '+ey.toFixed(1)+' L'+wx.toFixed(1)+' '+wy.toFixed(1);
+  }
   function go(p){
     var hy=hipY(p), gA=leg(p), gB=leg(p+50), hyB=hy;
-    legA.setAttribute('d',pathFor(gA,hy)); legB.setAttribute('d',pathFor(gB,hyB));
-    torso.setAttribute('x1',HX); torso.setAttribute('y1',hy); torso.setAttribute('x2',HX+5); torso.setAttribute('y2',hy-70);
-    head.setAttribute('cx',HX+7); head.setAttribute('cy',hy-93);
+    setD(legA,pathFor(gA,hy)); setD(legB,pathFor(gB,hyB));
+    var sx=HX+5, sy=hy-60;
+    setD(armA,armPath(gA.h,sx,sy)); setD(armB,armPath(gB.h,sx-2,sy+1));
+    line(torso,HX,hy-8,HX+5,hy-58); line(torsoHi,HX+11,hy-14,HX+15,hy-54); line(neck,HX+5,hy-62,HX+8,hy-80);
+    head.setAttribute('cx',HX+9); head.setAttribute('cy',hy-95);
     sensor.setAttribute('transform','translate('+(HX+gA.kx).toFixed(1)+' '+(hy+gA.ky).toFixed(1)+') rotate('+(-gA.h/R).toFixed(1)+')');
     var v=interp(KNEE,p); dot.setAttribute('cx',cx(p)); dot.setAttribute('cy',cy(v)); cursor.setAttribute('x1',cx(p)); cursor.setAttribute('x2',cx(p));
     show(phaseOf(p));
