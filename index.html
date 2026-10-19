@@ -58,11 +58,6 @@
   .prose{max-width:38em; margin-top:44px; font-size:18px}
   .prose p + p{margin-top:18px}
   .light .prose{color:#33353B}
-  .why-grid{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:56px; align-items:start; margin-top:44px}
-  .why-grid .prose{margin-top:0}
-  .why-photo{margin:0}
-  .why-photo img{display:block; width:100%; height:auto; border-radius:4px; box-shadow:0 18px 40px rgba(0,0,0,.12)}
-  @media (max-width:860px){ .why-grid{grid-template-columns:1fr; gap:32px; margin-top:32px} }
   .prose b{font-weight:700}
   .light .prose b{color:var(--ink)}
 
@@ -328,6 +323,11 @@
   .mine b{display:block; color:var(--ink); font-size:16.5px; line-height:1.5}
   .mine span{display:block; color:var(--ink2); font-size:14px; margin-top:4px}
   .rnote{margin-top:18px; font-size:13px; color:var(--ink2)}
+  .why-grid{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); gap:64px; align-items:end}
+  .why-grid .prose{margin-top:44px}
+  .why-photo img{display:block; width:100%; height:auto; border-radius:4px; filter:saturate(.9)}
+  .why-photo figcaption{margin-top:12px; font-size:12.5px; letter-spacing:.04em; color:var(--ink2)}
+  @media (max-width:900px){ .why-grid{grid-template-columns:1fr; gap:40px} }
   .papers .pt{display:block; color:var(--ink); font-size:17px; line-height:1.45; font-weight:600; letter-spacing:-.01em}
   .mine b.m2{margin-top:18px}
   .badge.sci{background:var(--ink); color:var(--white)}
@@ -451,12 +451,12 @@
       <h2><b>가족을 위한<br class="m"> 서비스</b>로 시작해,<br><b>지역사회까지</b></h2>
       <p class="sub">Started for my family, now for the community</p>
       <div class="why-grid">
-        <div class="prose">
+      <div class="prose">
         <p>시작은 가족이었습니다. 뇌질환으로 힘들어하는 가족을 곁에서 지켜보며, 알츠하이머병과 파킨슨병처럼 아직 완치가 어려운 병일수록 위험 신호를 얼마나 일찍 알아차리느냐가 중요하다는 것을 알게 됐습니다.</p>
         <p>물리치료사로 일하며 <b>걸음에는 몸과 뇌의 상태가 함께 담긴다</b>는 것을 배웠고, 파킨슨병 치매 환자의 협응·기능훈련 효과를 논문으로 다루기도 했습니다. 그렇게 가족을 위해 만든 서비스가 이제 치매안심센터와 복지관을 거쳐 지역사회로 이어지고 있습니다.</p>
         <p>의료와 복지, 돌봄 사이에서 놓치기 쉬운 신호를 걸음으로 먼저 찾고, 다음 행동까지 잇는 것. 그것이 제가 하는 일입니다.</p>
       </div>
-        <figure class="why-photo"><img src="img/family.jpg" width="814" height="656" alt="유중경의 가족사진" loading="lazy"></figure>
+      <figure class="why-photo"><img src="img/family.jpg" alt="어린 시절 가족사진" width="814" height="656" loading="lazy"><figcaption>FAMILY · 시작은 가족이었습니다</figcaption></figure>
       </div>
     </div>
   </section>
@@ -726,7 +726,7 @@
     <div class="wrap reveal">
       <p class="step">THIS SEMESTER · KAIST</p>
       <h2><b>러닝자세 AI 코칭</b></h2>
-      <div class="prose"><p>측정 결과를 받아도 다음 러닝에서 무엇을 바꿔야 할지 모르는 러너가 많을 거라고 봅니다. 그 가설이 맞는지, 팀원들과 직접 확인하고 있습니다.</p></div>
+      <div class="prose"><p>측정 결과를 받아도 다음 러닝에서 무엇을 바꿔야 할지 모르는 러너가 많을 거라고 봅니다.</p></div>
       <ol class="steps">
         <li><b>측정한다</b><span>첨단연구장비에서 출발한 스마트 보행분석계를 통해 1초에 100번 자세를 측정합니다.</span></li>
         <li><b>분석한다</b><span>생체역학 데이터를 분석하여, 대학 연구실에서 받을 수 있는 러닝 파라미터를 제공합니다.</span></li>
