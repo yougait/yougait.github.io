@@ -273,15 +273,101 @@
     footer{padding-top:88px}
     footer .q{margin-bottom:64px}
   }
+
+
+  /* 미디어 · 연구 */
+  .media{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr); gap:48px; margin-top:64px; align-items:start}
+  .yt{position:relative; display:block; width:100%; aspect-ratio:16/9; background:#000 center/cover no-repeat; border:1px solid var(--drule); border-radius:4px; overflow:hidden; cursor:pointer; padding:0; color:inherit; font:inherit; text-align:left}
+  .yt::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.78))}
+  .yt .play{position:absolute; left:50%; top:50%; width:76px; height:76px; margin:-38px 0 0 -38px; border-radius:50%; background:var(--volt); z-index:1; transition:transform .25s ease}
+  .yt .play::before{content:""; position:absolute; left:31px; top:24px; border-style:solid; border-width:14px 0 14px 22px; border-color:transparent transparent transparent #000}
+  .yt:hover .play{transform:scale(1.08)}
+  .yt .cap{position:absolute; left:20px; right:20px; bottom:16px; z-index:1; color:var(--white); font-size:15px; line-height:1.45}
+  .yt .cap b{display:block; font-size:12px; letter-spacing:.06em; color:var(--volt); margin-bottom:4px}
+  .yt iframe{position:absolute; inset:0; width:100%; height:100%; border:0; z-index:2}
+  .linklist{list-style:none; border-top:1px solid var(--d1)}
+  .linklist li{border-bottom:1px solid var(--drule)}
+  .linklist a{display:grid; grid-template-columns:76px 1fr auto; gap:12px; align-items:baseline; padding:15px 0; color:var(--white); text-decoration:none; font-size:15.5px; line-height:1.5}
+  .linklist a span{color:var(--d2); font-weight:600; font-size:14px}
+  .linklist a em{font-style:normal; display:block; color:var(--d2); font-size:14px}
+  .linklist a::after{content:"↗"; color:var(--volt); font-size:14px}
+  .linklist a:hover b{text-decoration:underline; text-decoration-color:var(--volt); text-underline-offset:4px}
+  .linklist .nolink{display:grid; grid-template-columns:76px 1fr; gap:12px; padding:15px 0; font-size:15.5px; color:var(--white)}
+  .linklist .nolink span{color:var(--d2); font-weight:600; font-size:14px}
+  .media h4{font-size:13px; font-weight:700; letter-spacing:.06em; color:var(--volt); padding-bottom:14px}
+  .media .stack{display:flex; flex-direction:column; gap:44px}
+  .rstats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--ink); margin-top:56px}
+  .rstats div{padding:24px 24px 6px 0}
+  .rstats div + div{padding-left:24px; border-left:1px solid var(--rule)}
+  .rstats strong{display:block; font-size:clamp(40px,5vw,60px); font-weight:800; letter-spacing:-.05em; line-height:1; color:var(--ink)}
+  .rstats strong small{font-size:.42em; font-weight:700; margin-left:4px}
+  .rstats span{display:block; margin-top:10px; font-size:14.5px; color:var(--ink2)}
+  .papers{list-style:none; margin-top:48px; border-top:1px solid var(--ink)}
+  .papers li{display:grid; grid-template-columns:88px 1fr; gap:20px; padding:22px 0; border-bottom:1px solid var(--rule)}
+  .papers .yr{font-size:15px; font-weight:800; color:var(--ink)}
+  .papers a{color:var(--ink); text-decoration:none; font-size:17px; line-height:1.45; font-weight:600; letter-spacing:-.01em}
+  .papers a:hover{text-decoration:underline; text-decoration-color:var(--core); text-underline-offset:4px}
+  .papers .j{display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; margin-top:8px; font-size:14px; color:var(--ink2)}
+  .badge{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.06em; padding:3px 7px; border-radius:3px; border:1px solid var(--ink); color:var(--ink); line-height:1.2}
+  .badge.pl{background:var(--volt); border-color:var(--volt); color:#000}
+  .mine{margin-top:56px; display:grid; grid-template-columns:160px 1fr; gap:24px; padding-top:22px; border-top:1px solid var(--rule)}
+  .mine h4{font-size:13px; font-weight:700; color:var(--ink2); letter-spacing:.04em; padding-top:3px}
+  .mine b{display:block; color:var(--ink); font-size:16.5px; line-height:1.5}
+  .mine span{display:block; color:var(--ink2); font-size:14px; margin-top:4px}
+  .rnote{margin-top:18px; font-size:13px; color:var(--ink2)}
+  @media (max-width:900px){
+    .media{grid-template-columns:1fr; gap:40px}
+    .rstats{grid-template-columns:1fr}
+    .rstats div + div{padding-left:0; border-left:0; border-top:1px solid var(--rule)}
+    .papers li{grid-template-columns:1fr; gap:6px}
+    .mine{grid-template-columns:1fr; gap:10px}
+    .yt .play{width:60px; height:60px; margin:-30px 0 0 -30px}
+    .yt .play::before{left:24px; top:18px; border-width:12px 0 12px 19px}
+  }
+
+  /* 걷는 모션 */
+  :root{--foot:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -28 24 50'%3E%3Cellipse cx='0' cy='-6' rx='7.5' ry='11' transform='rotate(-8)'/%3E%3Cellipse cx='1' cy='13' rx='5.5' ry='6.5'/%3E%3Ccircle cx='-6' cy='-21' r='2.4'/%3E%3Ccircle cx='-2' cy='-23.5' r='2.4'/%3E%3Ccircle cx='2.4' cy='-23.6' r='2.2'/%3E%3Ccircle cx='6' cy='-22' r='2'/%3E%3Ccircle cx='8.6' cy='-19' r='1.8'/%3E%3C/svg%3E")}
+  .walker{position:fixed; top:10px; left:0; z-index:60; width:40px; height:53px; border-radius:14px; background:rgba(0,0,0,.88); box-shadow:0 0 0 1.5px rgba(0,255,127,.6), 0 8px 20px rgba(0,0,0,.28); pointer-events:none; opacity:0; transition:opacity .4s ease; will-change:transform}
+  .walker.on{opacity:1}
+  .walker svg{width:100%; height:100%; display:block; transition:transform .25s ease}
+  .step{display:flex; align-items:center; gap:10px}
+  .step::before{content:""; flex:none; width:11px; height:19px; background:currentColor; -webkit-mask:var(--foot) center/contain no-repeat; mask:var(--foot) center/contain no-repeat; opacity:0; transform:translateY(-8px) scale(1.7) rotate(var(--fr,-10deg)) scaleX(var(--fx,1)); transition:opacity .4s ease .3s, transform .6s cubic-bezier(.2,1.6,.35,1) .3s}
+  .reveal.in .step::before{opacity:1; transform:rotate(var(--fr,-10deg)) scaleX(var(--fx,1))}
+  main > .sec:nth-of-type(odd){--fx:-1; --fr:10deg}
+  ol.tl{position:relative; padding-left:48px}
+  ol.tl::before,ol.tl::after{content:""; position:absolute; left:17px; top:0; width:2px}
+  ol.tl::before{bottom:0; background:var(--rule)}
+  ol.tl::after{height:var(--fill,0px); background:linear-gradient(var(--core),var(--volt))}
+  ol.tl li{position:relative}
+  ol.tl li::before{content:""; position:absolute; left:-47px; top:34px; width:14px; height:23px; background:#D4D5DA; -webkit-mask:var(--foot) center/contain no-repeat; mask:var(--foot) center/contain no-repeat; transform:rotate(-8deg) scale(.85); transition:background-color .3s ease, transform .5s cubic-bezier(.2,1.6,.35,1)}
+  ol.tl li:nth-child(even)::before{left:-24px; transform:scaleX(-1) rotate(-8deg) scale(.85)}
+  ol.tl li.on::before{background:var(--core); transform:rotate(-8deg) scale(1.15)}
+  ol.tl li.on:nth-child(even)::before{transform:scaleX(-1) rotate(-8deg) scale(1.15)}
+  .gc-track{position:relative; margin-top:56px}
+  .gc-track .gc{margin-top:0}
+  html.scrolly .gc-track .gc{position:sticky; top:var(--stickTop,96px)}
+  .scroll-hint{display:none}
+  html.scrolly .scroll-hint{display:inline}
+  .gc-meter{height:2px; background:var(--drule); margin-top:14px; display:none}
+  .gc-meter i{display:block; height:100%; width:100%; background:var(--volt); transform-origin:0 50%; transform:scaleX(0)}
+  html.scrolly .gc-meter{display:block}
+
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important; transition:none!important}
     .gait .core{stroke-dashoffset:0} .gait .halo,.gait .glow{opacity:1} .gait .fp{opacity:.6}
     .reveal{opacity:1; transform:none}
+    .walker{display:none}
+    .step::before{opacity:1; transform:rotate(var(--fr,-10deg)) scaleX(var(--fx,1))}
+    ol.tl::after{height:100%}
+    ol.tl li::before{background:var(--core)}
   }
 </style>
 </head>
 <body>
 <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+<div class="walker" id="walker" aria-hidden="true">
+  <svg viewBox="30 -10 230 320"><line x1="10" y1="291" x2="276" y2="291" stroke="#2c2f35" stroke-width="10" stroke-linecap="round"/><path class="wb" stroke="#5a5d66" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line class="wt" stroke="#B9BBC2" stroke-width="30" stroke-linecap="round"/><circle class="wh" r="27" fill="#B9BBC2"/><path class="wa" stroke="#F2F2F4" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle class="ws" r="12" fill="#00FF7F"/></svg>
+</div>
 
 <header class="hero dark" id="top">
   <div class="wrap">
@@ -407,12 +493,14 @@
       <p class="step">STEP 03 · GAIT</p>
       <h2><b>걸음 한 번</b>, 여덟&nbsp;장면</h2>
       <p class="sub">Rancho Los Amigos · 8 phases of gait</p>
-      <div class="prose" style="color:#C9CBD1"><p>물리치료사는 한 걸음을 여덟 장면으로 나눠 봅니다. 무릎 정중앙의 센서는 이 여덟 장면을 실시간으로 구분합니다. 장면을 하나씩 눌러 보세요.</p></div>
+      <div class="prose" style="color:#C9CBD1"><p>물리치료사는 한 걸음을 여덟 장면으로 나눠 봅니다. 무릎 정중앙의 센서는 이 여덟 장면을 실시간으로 구분합니다. <span class="scroll-hint">천천히 스크롤하면 그림이 한 걸음씩 걷습니다. </span>장면을 하나씩 눌러 볼 수도 있습니다.</p></div>
+      <div class="gc-track" id="gcTrack">
       <div class="gc">
         <div class="gc-fig">
           <span class="tag">KNEE SENSOR · 무릎 정중앙</span>
           <svg viewBox="0 0 300 330" role="img" aria-label="보행 주기에 따라 움직이는 다리 그림">
             <line x1="20" y1="290" x2="280" y2="290" stroke="#3a3d44" stroke-width="2"/>
+            <line id="groundDash" x1="20" y1="298" x2="280" y2="298" stroke="#4a4d55" stroke-width="2" stroke-dasharray="4 22" stroke-linecap="round"/>
             <g id="legB" stroke="#4a4d55" stroke-width="13" stroke-linecap="round" fill="none"><path/></g>
             <line id="torso" stroke="#8C8E96" stroke-width="13" stroke-linecap="round"/>
             <circle id="head" r="15" fill="#8C8E96"/>
@@ -439,8 +527,10 @@
             <p id="phDesc"></p>
             <p class="sensor"><i>SENSOR</i><span id="phSensor"></span></p>
           </div>
+          <div class="gc-meter" aria-hidden="true"><i id="gcMeter"></i></div>
           <div class="gc-ctrl"><button type="button" id="play">일시정지</button><span class="tiny">그림과 곡선은 이해를 돕기 위한 일반적인 보행 패턴이며, 실제 측정값이 아닙니다.</span></div>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -456,7 +546,7 @@
         <li><div class="y">2023</div><div><h3>기술을 제품으로</h3><p>창업성장기술개발 디딤돌 R&amp;D로 보행 분석 기술을 제품으로 다듬고, KOICA 국제협력 프로그램(CTS)에 참여했습니다.</p></div></li>
         <li><div class="y">2024</div><div><h3>글로벌 R&amp;D 주관기관 선정</h3><p>창업성장기술개발 글로벌 R&amp;D 주관기관으로 선정돼, 보행 속도를 넘어 멀티모달 분석으로 조기 예측 기술을 고도화하는 과제를 맡았습니다. 같은 해 인공지능 관절보호대와 러닝 보호대 특허로 특허가치평가 A등급과 IP 데모데이 우수상을 받았습니다.</p></div></li>
         <li><div class="y">2025</div><div><h3>CES, 그리고 첫 수출</h3><p>CES 2025에 출품하고 미국 물리치료 클리닉으로 첫 수출을 했습니다. SK하이닉스 I-lab 대상을 받았고, 대한의료정보학회 심포지엄에서 AI 복지돌봄 모델을 발표했습니다.</p></div></li>
-        <li class="now"><div class="y">2026</div><div><h3>KAIST, 그리고 SOVAC 무대</h3><p>KAIST Impact MBA에 입학했습니다. 9월에는 SK하이닉스가 공동주관한 대한민국 사회적가치페스타(SOVAC)에서 예방 AI 기반 지역 돌봄 사례를 발표했고, CES 2027 참가기업으로 선정됐습니다.</p></div></li>
+        <li class="now"><div class="y">2026</div><div><h3>KAIST, 그리고 SOVAC 세션</h3><p>KAIST Impact MBA에 입학했습니다. 9월에는 SK하이닉스가 공동주관한 대한민국 사회적가치페스타(SOVAC)에서 예방 AI 기반 지역 돌봄 사례를 발표했고, CES 2027 참가기업으로 선정됐습니다.</p></div></li>
       </ol>
     </div>
   </section>
@@ -464,8 +554,8 @@
   <section class="sec dark" id="recognition">
     <div class="wrap reveal">
       <p class="step">STEP 05 · RECOGNITION</p>
-      <h2><b>상과 무대</b></h2>
-      <p class="sub">Awards, speaking, roles and press</p>
+      <h2><b>수상 및 경력</b></h2>
+      <p class="sub">Awards &amp; career</p>
       <div class="grid4">
         <div class="col">
         <div class="block">
@@ -481,14 +571,6 @@
             <li><span>인증</span><div><b>혁신스타트업 인증</b><em>신용보증기금</em></div></li>
           </ul>
         </div>
-        <div class="block">
-          <h4>ROLES NOW</h4>
-          <ul>
-            <li><span>멘토</span><div><b>모두의 창업 프로젝트 책임멘토</b></div></li>
-            <li><span>협회</span><div><b>대한물리치료사협회</b><em>중앙회 미디어위원 · 대전지부 법무노무 이사</em></div></li>
-            <li><span>강의</span><div><b>바이오헬스혁신공유대학사업단</b><em>인체계측 강사</em></div></li>
-          </ul>
-        </div>
         </div>
         <div class="col">
         <div class="block">
@@ -501,12 +583,11 @@
           </ul>
         </div>
         <div class="block">
-          <h4>PRESS &amp; RESEARCH</h4>
+          <h4>ROLES NOW</h4>
           <ul>
-            <li><span>2026.09</span><div><b>SK하이닉스 뉴스룸</b><em>사회적가치페스타 협력기업 성과 공유</em></div></li>
-            <li><span>2026.02</span><div><b>한경매거진</b></div></li>
-            <li><span>2025.11</span><div><b>CJB 청주방송</b></div></li>
-            <li><span>논문</span><div><b>파킨슨병 치매 환자의 슬링 협응·기능훈련이 인지기능 및 신체수행능력, 우울지표에 미치는 영향</b><em>신경근육재활학회지 10(1), 1–14</em></div></li>
+            <li><span>멘토</span><div><b>모두의 창업 프로젝트 책임멘토</b></div></li>
+            <li><span>협회</span><div><b>대한물리치료사협회</b><em>중앙회 미디어위원 · 대전지부 법무노무 이사</em></div></li>
+            <li><span>강의</span><div><b>바이오헬스혁신공유대학사업단</b><em>인체계측 강사</em></div></li>
           </ul>
         </div>
         </div>
@@ -516,7 +597,7 @@
 
   <section class="sec volt" id="kneech">
     <div class="wrap reveal">
-      <p class="step">STEP 06 · NEXT</p>
+      <p class="step">STEP 08 · NEXT</p>
       <h2><b>KNEECH</b>,<br>러너를 위한 니치</h2>
       <p class="sub">A runner's wearable, built on the same gait sensor</p>
       <div class="prose">
@@ -618,7 +699,8 @@
   }
   var legA=document.querySelector('#legA path'), legB=document.querySelector('#legB path'), torso=document.getElementById('torso'),
       head=document.getElementById('head'), sensor=document.getElementById('sensor'), curve=document.getElementById('curve'),
-      dot=document.getElementById('dot'), cursor=document.getElementById('cursor'), bands=document.getElementById('bands'), chips=document.getElementById('chips');
+      dot=document.getElementById('dot'), cursor=document.getElementById('cursor'), bands=document.getElementById('bands'), chips=document.getElementById('chips'),
+      gDash=document.getElementById('groundDash');
   var X0=44, X1=590, Y0=210, YS=160/60;
   function cx(p){return X0+(X1-X0)*p/100} function cy(v){return Y0-v*YS}
   var d='';
@@ -659,6 +741,7 @@
     torso.setAttribute('x1',HX); torso.setAttribute('y1',hy); torso.setAttribute('x2',HX+5); torso.setAttribute('y2',hy-70);
     head.setAttribute('cx',HX+7); head.setAttribute('cy',hy-93);
     sensor.setAttribute('transform','translate('+(HX+gA.kx).toFixed(1)+' '+(hy+gA.ky).toFixed(1)+') rotate('+(-gA.h/R).toFixed(1)+')');
+    if(gDash) gDash.setAttribute('stroke-dashoffset',(p*2.3).toFixed(1));
     var v=interp(KNEE,p); dot.setAttribute('cx',cx(p)); dot.setAttribute('cy',cy(v)); cursor.setAttribute('x1',cx(p)); cursor.setAttribute('x2',cx(p));
     show(phaseOf(p));
     pos=p;
@@ -676,19 +759,85 @@
   playBtn.addEventListener('click',function(){ setPlaying(!playing); });
   go(0);
   var calm=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root=document.documentElement, track=document.getElementById('gcTrack'), gcEl=track && track.querySelector('.gc'),
+      meter=document.getElementById('gcMeter'), scrolly=false, stickTop=96, lastT=-1;
+
+  // 넓은 화면에서는 스크롤로 보행 그림을 움직인다
+  function setScrolly(){
+    var ok=!calm && !!gcEl && window.innerWidth>=1000 && gcEl.offsetHeight+120<window.innerHeight;
+    if(ok!==scrolly){ scrolly=ok; root.classList.toggle('scrolly',ok); if(ok){ setPlaying(false); playBtn.textContent='자동 재생'; } }
+    if(ok){
+      stickTop=Math.max(72,Math.round((window.innerHeight-gcEl.offsetHeight)/2));
+      track.style.setProperty('--stickTop',stickTop+'px');
+      track.style.height=Math.round(gcEl.offsetHeight+window.innerHeight*1.7)+'px';
+    } else if(track){ track.style.height=''; }
+  }
+  function driveGait(){
+    if(!scrolly) return;
+    var r=track.getBoundingClientRect(), total=r.height-gcEl.offsetHeight;
+    if(r.bottom<0 || r.top>window.innerHeight || total<=0) return;
+    var t=Math.min(1,Math.max(0,(stickTop-r.top)/total));
+    if(Math.abs(t-lastT)<0.0005) return;
+    lastT=t; if(playing) setPlaying(false);
+    go(t>=1?99.9:(t*200)%100);
+    if(meter) meter.style.transform='scaleX('+t.toFixed(4)+')';
+  }
+  setScrolly();
+
   if(!calm){
     var gsec=document.getElementById('gait');
     if('IntersectionObserver' in window){
       var started=false;
-      new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting && !started){ started=true; setPlaying(true);} }) },{threshold:.2}).observe(gsec);
+      new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting && !started && !scrolly){ started=true; setPlaying(true);} }) },{threshold:.2}).observe(gsec);
     } else { setPlaying(true); }
   } else { playBtn.textContent='재생'; }
 
-  // 맨 위 진행 막대
+  // 스크롤하면 진행 막대 끝에서 작은 사람이 걷는다
+  var wk=document.getElementById('walker'), wsvg=wk && wk.querySelector('svg');
+  var wA=wk && wk.querySelector('.wa'), wB=wk && wk.querySelector('.wb'), wT=wk && wk.querySelector('.wt'), wH=wk && wk.querySelector('.wh'), wS=wk && wk.querySelector('.ws');
+  var lastY=window.pageYOffset||0, walked=0, face=1, hideT=0, STRIDE=520;
+  function drawWalker(p){
+    var hy=hipY(p), a=leg(p), b=leg(p+50);
+    wA.setAttribute('d',pathFor(a,hy)); wB.setAttribute('d',pathFor(b,hy));
+    wT.setAttribute('x1',HX); wT.setAttribute('y1',hy); wT.setAttribute('x2',HX+5); wT.setAttribute('y2',hy-70);
+    wH.setAttribute('cx',HX+7); wH.setAttribute('cy',hy-98);
+    wS.setAttribute('cx',(HX+a.kx).toFixed(1)); wS.setAttribute('cy',(hy+a.ky).toFixed(1));
+  }
+  if(wk) drawWalker(0);
+  function walk(y,t){
+    if(!wk || calm) return;
+    var dy=y-lastY; lastY=y;
+    if(Math.abs(dy)<1) return;
+    walked+=Math.abs(dy); face=dy>0?1:-1;
+    drawWalker((walked/STRIDE*100)%100);
+    wk.style.transform='translateX('+(8+t*(window.innerWidth-58)).toFixed(1)+'px)';
+    wsvg.style.transform='scaleX('+face+')';
+    wk.classList.add('on'); clearTimeout(hideT);
+    hideT=setTimeout(function(){ wk.classList.remove('on'); },1300);
+  }
+
+  // 걸어온 길: 스크롤만큼 길이 채워지고 발자국이 찍힌다
+  var tl=document.querySelector('ol.tl'), tlItems=tl?tl.querySelectorAll('li'):[];
+  function railFill(){
+    if(!tl || calm) return;
+    var r=tl.getBoundingClientRect();
+    if(r.top>window.innerHeight || r.bottom<0) return;
+    var f=Math.min(r.height,Math.max(0,window.innerHeight*0.62-r.top));
+    tl.style.setProperty('--fill',f.toFixed(0)+'px');
+    for(var i=0;i<tlItems.length;i++){ tlItems[i].classList.toggle('on', tlItems[i].offsetTop+40<f); }
+  }
+
+  // 맨 위 진행 막대와 스크롤 모션을 한 프레임에 묶는다
   var bar=document.getElementById('progress'), ticking=false;
-  function prog(){ var h=document.documentElement, m=h.scrollHeight-h.clientHeight; bar.style.transform='scaleX('+(m>0?Math.min(1,h.scrollTop/m):0).toFixed(4)+')'; ticking=false; }
-  window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(prog); } },{passive:true});
-  prog();
+  function onFrame(){
+    var h=document.documentElement, y=window.pageYOffset||h.scrollTop, m=h.scrollHeight-h.clientHeight, t=m>0?Math.min(1,y/m):0;
+    bar.style.transform='scaleX('+t.toFixed(4)+')';
+    walk(y,t); railFill(); driveGait();
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onFrame); } },{passive:true});
+  window.addEventListener('resize',function(){ setScrolly(); lastT=-1; onFrame(); });
+  onFrame();
 
   // 스크롤하면 섹션이 나타난다
   var els=document.querySelectorAll('.reveal');
@@ -696,6 +845,19 @@
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})},{threshold:.08});
     els.forEach(function(el){io.observe(el)});
   } else { els.forEach(function(el){el.classList.add('in')}); }
+
+  // 영상은 누를 때만 불러온다
+  document.querySelectorAll('.yt[data-id]').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(b.querySelector('iframe')) return;
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0&start='+(b.dataset.start||0);
+      f.title=b.getAttribute('aria-label')||'YouTube';
+      f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen=true;
+      b.appendChild(f);
+    });
+  });
 })();
 </script>
 </body>
