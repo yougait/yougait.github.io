@@ -298,6 +298,10 @@
   .linklist .nolink span{color:var(--d2); font-weight:600; font-size:14px}
   .media h4{font-size:13px; font-weight:700; letter-spacing:.06em; color:var(--volt); padding-bottom:14px}
   .media .stack{display:flex; flex-direction:column; gap:44px}
+  .press{margin-top:72px}
+  .press h4{font-size:13px; font-weight:700; letter-spacing:.06em; color:var(--volt); padding-bottom:14px}
+  .press-list{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:48px}
+  @media (max-width:900px){ .press-list{grid-template-columns:1fr} }
   .rstats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--ink); margin-top:56px}
   .rstats div{padding:24px 24px 6px 0}
   .rstats div + div{padding-left:24px; border-left:1px solid var(--rule)}
@@ -317,6 +321,8 @@
   .mine b{display:block; color:var(--ink); font-size:16.5px; line-height:1.5}
   .mine span{display:block; color:var(--ink2); font-size:14px; margin-top:4px}
   .rnote{margin-top:18px; font-size:13px; color:var(--ink2)}
+  .papers .pt{display:block; color:var(--ink); font-size:17px; line-height:1.45; font-weight:600; letter-spacing:-.01em}
+  .mine b.m2{margin-top:18px}
   .badge.sci{background:var(--ink); color:var(--white)}
   .papers .j i{font-style:italic}
   .ytlink{display:inline-block; margin-top:14px; font-size:14px; color:var(--d2); text-decoration:none}
@@ -339,9 +345,6 @@
 
   /* 걷는 모션 */
   :root{--foot:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -28 24 50'%3E%3Cellipse cx='0' cy='-6' rx='7.5' ry='11' transform='rotate(-8)'/%3E%3Cellipse cx='1' cy='13' rx='5.5' ry='6.5'/%3E%3Ccircle cx='-6' cy='-21' r='2.4'/%3E%3Ccircle cx='-2' cy='-23.5' r='2.4'/%3E%3Ccircle cx='2.4' cy='-23.6' r='2.2'/%3E%3Ccircle cx='6' cy='-22' r='2'/%3E%3Ccircle cx='8.6' cy='-19' r='1.8'/%3E%3C/svg%3E")}
-  .walker{position:fixed; top:10px; left:0; z-index:60; width:40px; height:53px; border-radius:14px; background:rgba(0,0,0,.88); box-shadow:0 0 0 1.5px rgba(0,255,127,.6), 0 8px 20px rgba(0,0,0,.28); pointer-events:none; opacity:0; transition:opacity .4s ease; will-change:transform}
-  .walker.on{opacity:1}
-  .walker svg{width:100%; height:100%; display:block; transition:transform .25s ease}
   .step{display:flex; align-items:center; gap:10px}
   .step::before{content:""; flex:none; width:11px; height:19px; background:currentColor; -webkit-mask:var(--foot) center/contain no-repeat; mask:var(--foot) center/contain no-repeat; opacity:0; transform:translateY(-8px) scale(1.7) rotate(var(--fr,-10deg)) scaleX(var(--fx,1)); transition:opacity .4s ease .3s, transform .6s cubic-bezier(.2,1.6,.35,1) .3s}
   .reveal.in .step::before{opacity:1; transform:rotate(var(--fr,-10deg)) scaleX(var(--fx,1))}
@@ -368,7 +371,6 @@
     *{animation:none!important; transition:none!important}
     .gait .core{stroke-dashoffset:0} .gait .halo,.gait .glow{opacity:1} .gait .fp{opacity:.6}
     .reveal{opacity:1; transform:none}
-    .walker{display:none}
     .step::before{opacity:1; transform:rotate(var(--fr,-10deg)) scaleX(var(--fx,1))}
     ol.tl::after{height:100%}
     ol.tl li::before{background:var(--core)}
@@ -624,37 +626,51 @@
       </div>
       <div class="media">
         <div>
-          <button class="yt" type="button" data-id="WE-71Nu1tnw" data-start="0" aria-label="SK하이닉스 공식 유튜브 SPARK 영상, 청주에서 피어난 가능성" style="background-image:url('https://i.ytimg.com/vi/WE-71Nu1tnw/hqdefault.jpg')"><span class="play"></span><span class="cap"><b>SK하이닉스 공식 유튜브 · SPARK</b>청주에서 피어난 가능성, 지역의 내일을 잇다</span></button>
-          <a class="ytlink" href="https://youtu.be/WE-71Nu1tnw" target="_blank" rel="noopener">YouTube에서 보기 ↗</a>
+          <button class="yt" type="button" data-id="WE-71Nu1tnw" data-start="0" aria-label="SK하이닉스 공식 유튜브 영상: 청주에서 피어난 가능성, 지역의 내일을 잇다" style="background-image:url('https://i.ytimg.com/vi/WE-71Nu1tnw/hqdefault.jpg')"><span class="play"></span><span class="cap"><b>SK하이닉스 공식 유튜브 · SPARK</b>청주에서 피어난 가능성, 지역의 내일을 잇다</span></button>
+          <a class="ytlink" href="https://www.youtube.com/watch?v=WE-71Nu1tnw" target="_blank" rel="noopener">YouTube에서 보기 ↗</a>
         </div>
         <div class="stack">
           <div>
             <h4>SOVAC 2026</h4>
             <ul class="linklist">
               <li><a href="https://www.youtube.com/watch?v=zp9frGAPexY" target="_blank" rel="noopener"><span>영상</span><div><b>제3회 대한민국 사회적가치 페스타, 협력기업과 함께 사회문제 해결 성과 공유</b><em>SK하이닉스 공식 유튜브 · 2026.09</em></div></a></li>
-              <li><a href="https://www.youtube.com/watch?v=4hSplS0eBl0&amp;t=95s" target="_blank" rel="noopener"><span>영상</span><div><b>총리실TV 출연</b><em>총리실TV 공식 유튜브 · 1분 35초부터</em></div></a></li>
+              <li><a href="https://www.youtube.com/watch?v=4hSplS0eBl0&amp;t=95s" target="_blank" rel="noopener"><span>영상</span><div><b>국무총리실 공식 채널 출연</b><em>총리실TV · 1분 35초부터</em></div></a></li>
               <li><a href="https://www.instagram.com/reel/DdncvgoDQjC/" target="_blank" rel="noopener"><span>릴스</span><div><b>사회적가치페스타 현장</b><em>공식 인스타그램</em></div></a></li>
             </ul>
           </div>
-          <div>
-            <h4>PRESS</h4>
-            <ul class="linklist">
-              <li><a href="https://news.skhynix.co.kr/korea-social-value-festa-2026/" target="_blank" rel="noopener"><span>2026.09</span><div><b>SK하이닉스 뉴스룸</b><em>사회적가치페스타 협력기업 성과 공유</em></div></a></li>
-              <li><a href="https://www.4th.kr/news/articleView.html?idxno=2118655" target="_blank" rel="noopener"><span>2026.09</span><div><b>포쓰저널</b><em>[SOVAC 2026] SK하이닉스, AI로 사회문제 해결..협력기업 성과 공유</em></div></a></li>
-              <li><a href="https://www.thepowernews.co.kr/view.php?ud=202609231458115754de3f0aa1be_7" target="_blank" rel="noopener"><span>2026.09</span><div><b>더파워</b><em>학생은 환경 앱 만들고 어르신은 AI 자서전…SK하이닉스, ‘사회문제 해결 AI’ 공개</em></div></a></li>
-              <li><a href="https://kr.aving.net/news/articleView.html?idxno=1814389" target="_blank" rel="noopener"><span>2026.09</span><div><b>에이빙(AVING)</b><em>피지오, KES 2026서 보행 예방관리 솔루션 ‘피지오링크·피지오클래스’ 선보여</em></div></a></li>
-              <li class="nolink"><span>2026.02</span><div><b>한경매거진</b></div></li>
-              <li class="nolink"><span>2025.11</span><div><b>CJB 청주방송</b><em>창업 아이디어에서 투자까지…‘스파크사업’ 결실</em></div></li>
-              <li><a href="https://mohw.go.kr/gallery.es?mid=a10505000000&amp;bid=0003&amp;act=view&amp;list_no=379707" target="_blank" rel="noopener"><span>2025.10</span><div><b>보건복지부</b><em>복지·돌봄 분야 AI 혁신 선도 기업과 간담회</em></div></a></li>
-              <li><a href="https://www.dailycc.net/news/articleView.html?idxno=848233" target="_blank" rel="noopener"><span>2025.08</span><div><b>충청신문</b><em>우송대 RISE사업단, 산학공동 기술개발과제 착수보고·협약식</em></div></a></li>
-              <li><a href="https://www.dtnews24.com/news/articleView.html?idxno=796947" target="_blank" rel="noopener"><span>2025.08</span><div><b>디트NEWS24</b><em>우송대 RISE사업단, 산학공동 기술개발과제 협약식</em></div></a></li>
-              <li class="nolink"><span>2025.03</span><div><b>시사매거진</b><em>테스티파이, 시장검증 기반 투자 유치 ‘3건’ 달성</em></div></li>
-              <li><a href="https://www.ccnnews.co.kr/news/articleView.html?idxno=358442" target="_blank" rel="noopener"><span>2024.12</span><div><b>충청뉴스</b><em>[CES 2025 대전기업] 피지오, ‘퇴행성 뇌질환 예방 솔루션’ 선보인다</em></div></a></li>
-              <li><a href="https://news.mt.co.kr/mtview.php?no=2024051713530836720&amp;type=1" target="_blank" rel="noopener"><span>2024.05</span><div><b>머니투데이</b><em>피지오클래스, 소아암 어린이들에게 디지털 헬스케어 솔루션 및 기부금 후원</em></div></a></li>
-
-            </ul>
-          </div>
         </div>
+      </div>
+      <div class="press">
+        <h4>PRESS</h4>
+        <ul class="linklist press-list">
+              <li><a href="https://www.4th.kr/news/articleView.html?idxno=2118655" target="_blank" rel="noopener"><span>2026.09</span><div><b>[SOVAC 2026] SK하이닉스, AI로 사회문제 해결..협력기업 성과 공유</b><em>포쓰저널</em></div></a></li>
+              <li><a href="https://www.thepowernews.co.kr/view.php?ud=202609231458115754de3f0aa1be_7" target="_blank" rel="noopener"><span>2026.09</span><div><b>학생은 환경 앱 만들고 어르신은 AI 자서전…SK하이닉스, ‘사회문제 해결 AI’ 공개</b><em>더파워</em></div></a></li>
+              <li><a href="https://news.skhynix.co.kr/korea-social-value-festa-2026/" target="_blank" rel="noopener"><span>2026.09</span><div><b>사회적가치페스타 협력기업 성과 공유</b><em>SK하이닉스 뉴스룸</em></div></a></li>
+              <li><a href="https://kr.aving.net/news/articleView.html?idxno=1814389" target="_blank" rel="noopener"><span>2026.09</span><div><b>피지오, KES 2026서 보행 예방관리 솔루션 ‘피지오링크·피지오클래스’ 선보여</b><em>에이빙(AVING)</em></div></a></li>
+              <li class="nolink"><span>2026.02</span><div><b>우송대 물리치료학과, 세계 최대 학술대회 CSM서 2위 수상</b></div></li>
+              <li class="nolink"><span>2026.02</span><div><b>한경매거진</b></div></li>
+              <li class="nolink"><span>2025.12</span><div><b>세종시, 디지털 헬스케어 산업 육성 위한 핵심 플랫폼 도약</b><em>보건신문</em></div></li>
+              <li class="nolink"><span>2025.11</span><div><b>창업 아이디어에서 투자까지…‘스파크사업’ 결실</b><em>CJB 청주방송</em></div></li>
+              <li><a href="https://www.mohw.go.kr/gallery.es?mid=a10505000000&amp;bid=0003&amp;act=view&amp;list_no=379707" target="_blank" rel="noopener"><span>2025.10</span><div><b>복지·돌봄 분야 AI 혁신 선도 기업과 간담회 개최</b><em>보건복지부</em></div></a></li>
+              <li><a href="https://www.dailycc.net/news/articleView.html?idxno=848233" target="_blank" rel="noopener"><span>2025.08</span><div><b>우송대 RISE사업단, 산학공동 기술개발과제 착수보고·협약식</b><em>충청신문</em></div></a></li>
+              <li><a href="https://www.dtnews24.com/news/articleView.html?idxno=796947" target="_blank" rel="noopener"><span>2025.08</span><div><b>우송대 RISE사업단, 산학공동 기술개발과제 협약식 등</b><em>디트NEWS24</em></div></a></li>
+              <li class="nolink"><span>2025.08</span><div><b>일자리·교육·복지·창업까지…SK하이닉스, 기술·상생 아우른 사회공헌 청사진 제시</b></div></li>
+              <li class="nolink"><span>2025.03</span><div><b>테스티파이, 시장검증 기반 투자 유치 ‘3건’ 달성</b><em>시사매거진</em></div></li>
+              <li><a href="https://www.ccnnews.co.kr/news/articleView.html?idxno=358442" target="_blank" rel="noopener"><span>2024.12</span><div><b>[CES 2025 대전기업] 피지오, ‘퇴행성 뇌질환 예방 솔루션’ 선보인다</b><em>충청뉴스</em></div></a></li>
+              <li class="nolink"><span>2024.12</span><div><b>‘디지털 헬스케어’ 선도기업! 우송대 LINC 3.0 우수 가족회사 기획탐방 ㈜피지오</b><em>충청비즈</em></div></li>
+              <li><a href="https://www.ccnnews.co.kr/news/articleView.html?idxno=349632" target="_blank" rel="noopener"><span>2024.10</span><div><b>대전혁신센터, 스타트업 두바이 진출 신호탄 쏜다</b><em>충청뉴스</em></div></a></li>
+              <li><a href="https://n.news.naver.com/article/421/0007841670" target="_blank" rel="noopener"><span>2024.10</span><div><b>대전창조경제혁신센터 스타트업 3개사 두바이 시장 ‘노크’</b><em>뉴스1</em></div></a></li>
+              <li><a href="https://www.etnews.com/20240719000071" target="_blank" rel="noopener"><span>2024.07</span><div><b>피지오, 스마트 러닝보호대 실증…AI로 신뢰도 높여 상용화</b><em>전자신문</em></div></a></li>
+              <li class="nolink"><span>2024.06</span><div><b>대전테크노파크 소셜벤처기업 성과 공유회 성료</b><em>중부매일</em></div></li>
+              <li class="nolink"><span>2024.06</span><div><b>대전TP, 대전 소셜벤처기업 한자리에… 성과 공유</b><em>충청뉴스</em></div></li>
+              <li><a href="https://www.mt.co.kr/industry/2024/05/19/2024051713530836720" target="_blank" rel="noopener"><span>2024.05</span><div><b>피지오클래스, 소아암 어린이들에게 디지털 헬스케어 솔루션 및 기부금 후원</b><em>머니투데이</em></div></a></li>
+              <li><a href="https://www.goodmorningcc.com/news/articleView.html?idxno=293131" target="_blank" rel="noopener"><span>2023.07</span><div><b>매트 위를 걷기만 하면 ‘보행 데이터’가 분석된다</b><em>굿모닝충청</em></div></a></li>
+              <li><a href="https://www.etnews.com/20230403000140" target="_blank" rel="noopener"><span>2023.04</span><div><b>피지오, ‘피지오 클래스’ 오픈</b><em>전자신문</em></div></a></li>
+              <li><a href="https://www.etnews.com/20221215000109" target="_blank" rel="noopener"><span>2022.12</span><div><b>[충청권 ICT이노베이션 우수사례] 대전 지역 ‘심투리얼’ ‘피지오 클래스’</b><em>전자신문</em></div></a></li>
+              <li class="nolink"><span>2022.12</span><div><b>충북도-충북과기원, AI·SW분야 융합 인재 발굴 및 성장스토리 우수사례 선정</b></div></li>
+              <li class="nolink"><span>2022.11</span><div><b>피지오클래스, ‘2022 대한민국 최고브랜드대상’ 건강관리 플랫폼 부문 대상 수상</b></div></li>
+              <li class="nolink"><span>2022.11</span><div><b>한국사회투자 창립 10주년 기념 글로벌 스타트업 투자대회</b><em>조세금융신문</em></div></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -664,22 +680,19 @@
       <p class="step">STEP 07 · RESEARCH</p>
       <h2><b>연구 및 논문</b></h2>
       <p class="sub">Research &amp; publications</p>
-      <div class="prose">
-        <p>피지오가 만든 무선 관성센서 <b>피지오링크(Physio Link)로 관절 각도를 측정한 국제학술지 논문</b>입니다.</p>
-      </div>
       <div class="rstats">
-        <div><strong>3<small>편</small></strong><span>피지오링크로 측정한 국제학술지 논문</span></div>
-        <div><strong>3<small>편</small></strong><span>SCOPUS 등재지 · 2025–2026</span></div>
-        <div><strong>100<small>Hz</small></strong><span>피지오링크 6축 관성센서 측정 주기</span></div>
+        <div><strong>3<small>편</small></strong><span>국제학술지 논문 · 2025–2026</span></div>
+        <div><strong>3<small>편</small></strong><span>SCOPUS 등재지</span></div>
+        <div><strong>2<small>편</small></strong><span>국내 학술지 논문</span></div>
       </div>
       <ol class="papers">
-        <li><span class="yr">2026</span><div><a href="https://doi.org/10.51559/ptji.v7i1.298" target="_blank" rel="noopener">Estimation-based joint position sense: comparing self-rated and measured accuracy across sexes</a><p class="j"><span><i>Physical Therapy Journal of Indonesia</i> 7(1), 1–6</span><span class="badge">SCOPUS</span><span class="badge pl">피지오링크 측정</span></p></div></li>
-        <li><span class="yr">2025</span><div><a href="https://doi.org/10.1123/ijatt.2025-0069" target="_blank" rel="noopener">Prior range of motion experience improves joint position sense in internal and external shoulder rotation</a><p class="j"><span><i>International Journal of Athletic Therapy and Training</i> · 온라인 선공개</span><span class="badge">SCOPUS</span><span class="badge pl">피지오링크 측정</span></p></div></li>
-        <li><span class="yr">2025</span><div><a href="https://doi.org/10.1007/s11332-025-01517-4" target="_blank" rel="noopener">Impact of muscle contraction conditions on hip joint position sense: a comparison of flexion and abduction</a><p class="j"><span><i>Sport Sciences for Health</i></span><span class="badge">SCOPUS</span><span class="badge pl">피지오링크 측정</span></p></div></li>
+        <li><span class="yr">2026</span><div><b class="pt">Estimation-based joint position sense: comparing self-rated and measured accuracy across sexes</b><p class="j"><span><i>Physical Therapy Journal of Indonesia</i> 7(1), 1–6</span><span class="badge">SCOPUS</span></p></div></li>
+        <li><span class="yr">2025</span><div><b class="pt">Prior range of motion experience improves joint position sense in internal and external shoulder rotation</b><p class="j"><span><i>International Journal of Athletic Therapy and Training</i> · 온라인 선공개</span><span class="badge">SCOPUS</span></p></div></li>
+        <li><span class="yr">2025</span><div><b class="pt">Impact of muscle contraction conditions on hip joint position sense: a comparison of flexion and abduction</b><p class="j"><span><i>Sport Sciences for Health</i></span><span class="badge">SCOPUS</span></p></div></li>
       </ol>
       <div class="mine">
         <h4>국내 학술지</h4>
-        <div><b>파킨슨병 치매 환자의 슬링 협응·기능훈련이 인지기능 및 신체수행능력, 우울지표에 미치는 영향</b><span>신경근육재활학회지 10(1), 1–14</span></div>
+        <div><b>파킨슨병 치매 환자의 슬링 협응·기능훈련이 인지기능 및 신체수행능력, 우울지표에 미치는 영향</b><span>신경근육재활학회지 10(1), 1–14</span><b class="m2">관성 측정 장비 센서를 사용한 어깨뼈의 관절가동범위와 척추후만각의 정량적 분석: 신뢰성과 타당성에 관한 예비 연구</b><span>신경근육재활학회지 14(3), 115–125 · 2024</span></div>
       </div>
     </div>
   </section>
@@ -919,30 +932,6 @@
     } else { setPlaying(true); }
   } else { playBtn.textContent='재생'; }
 
-  // 스크롤하면 진행 막대 끝에서 작은 사람이 걷는다
-  var wk=document.getElementById('walker'), wsvg=wk && wk.querySelector('svg');
-  var wA=wk && wk.querySelector('.wa'), wB=wk && wk.querySelector('.wb'), wT=wk && wk.querySelector('.wt'), wH=wk && wk.querySelector('.wh'), wS=wk && wk.querySelector('.ws');
-  var lastY=window.pageYOffset||0, walked=0, face=1, hideT=0, STRIDE=520;
-  function drawWalker(p){
-    var hy=hipY(p), a=leg(p), b=leg(p+50);
-    wA.setAttribute('d',pathFor(a,hy)); wB.setAttribute('d',pathFor(b,hy));
-    wT.setAttribute('x1',HX); wT.setAttribute('y1',hy); wT.setAttribute('x2',HX+5); wT.setAttribute('y2',hy-70);
-    wH.setAttribute('cx',HX+7); wH.setAttribute('cy',hy-98);
-    wS.setAttribute('cx',(HX+a.kx).toFixed(1)); wS.setAttribute('cy',(hy+a.ky).toFixed(1));
-  }
-  if(wk) drawWalker(0);
-  function walk(y,t){
-    if(!wk || calm) return;
-    var dy=y-lastY; lastY=y;
-    if(Math.abs(dy)<1) return;
-    walked+=Math.abs(dy); face=dy>0?1:-1;
-    drawWalker((walked/STRIDE*100)%100);
-    wk.style.transform='translateX('+(8+t*(window.innerWidth-58)).toFixed(1)+'px)';
-    wsvg.style.transform='scaleX('+face+')';
-    wk.classList.add('on'); clearTimeout(hideT);
-    hideT=setTimeout(function(){ wk.classList.remove('on'); },1300);
-  }
-
   // 걸어온 길: 스크롤만큼 길이 채워지고 발자국이 찍힌다
   var tl=document.querySelector('ol.tl'), tlItems=tl?tl.querySelectorAll('li'):[];
   function railFill(){
@@ -959,7 +948,7 @@
   function onFrame(){
     var h=document.documentElement, y=window.pageYOffset||h.scrollTop, m=h.scrollHeight-h.clientHeight, t=m>0?Math.min(1,y/m):0;
     bar.style.transform='scaleX('+t.toFixed(4)+')';
-    walk(y,t); railFill(); driveGait();
+    railFill(); driveGait();
     ticking=false;
   }
   window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onFrame); } },{passive:true});
