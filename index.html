@@ -279,20 +279,38 @@
 
 
 
-  /* 첫 화면 레터헤드 */
-  .lh{display:flex; justify-content:space-between; align-items:flex-start; gap:40px; padding-bottom:22px; border-bottom:1px solid #26292e}
-  .lh-id{display:flex; flex-direction:column; align-items:flex-start; gap:12px}
-  .lh-brand{display:block; height:22px; width:auto}
-  .lh-who{font-size:13.5px; color:#C9CBD1; letter-spacing:.01em}
-  .lh-addr{display:grid; gap:6px; font-size:12.5px; line-height:1.5; text-align:right}
-  .lh-addr div{display:flex; justify-content:flex-end; gap:12px}
-  .lh-addr dt{color:var(--volt); font-weight:700; min-width:48px; text-align:right}
-  .lh-addr dd{color:var(--d2)}
+  /* 첫 화면 마스트헤드 */
+  .mast{position:relative; display:flex; justify-content:space-between; align-items:center; gap:48px; padding:4px 0 26px}
+  .mast::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:#232529}
+  .mast::before{content:""; position:absolute; left:0; bottom:0; z-index:1; width:72px; height:1px; background:var(--volt); box-shadow:0 0 12px var(--volt); transform-origin:left; animation:mastLine 1.3s cubic-bezier(.2,.7,.2,1) .25s both}
+  @keyframes mastLine{from{transform:scaleX(0)}}
+  .mast-id{display:flex; align-items:center; gap:22px}
+  .mast-logo{display:block; height:26px; width:auto; filter:drop-shadow(0 0 16px rgba(0,255,127,.3))}
+  .mast-sep{width:1px; height:34px; background:#2c2f34}
+  .mast-who{display:flex; flex-direction:column; line-height:1.3}
+  .mast-who b{font-size:16px; font-weight:700; color:var(--white); letter-spacing:-.01em}
+  .mast-who span{margin-top:4px; font-size:12px; color:var(--d2); letter-spacing:.02em}
+  .mast-addr{display:grid; grid-template-columns:auto auto}
+  .mast-addr div{margin-left:28px; padding-left:28px; border-left:1px solid #232529}
+  .mast-addr div:first-child{margin-left:0; padding-left:0; border-left:0}
+  .mast-addr dt{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:10.5px; font-weight:700; letter-spacing:.16em; color:var(--volt)}
+  .mast-addr dt i{width:5px; height:5px; border-radius:50%; background:var(--volt); box-shadow:0 0 8px var(--volt); animation:mastPulse 2.6s ease-in-out infinite}
+  @keyframes mastPulse{50%{opacity:.4}}
+  .mast-addr dd{font-size:12.5px; line-height:1.6; color:#A9ABB2; letter-spacing:-.005em}
+  .mast-addr small{display:inline-block; margin-left:6px; padding:0 6px; border:1px solid #2c2f34; border-radius:3px; font-size:10.5px; line-height:1.6; color:var(--d2); letter-spacing:.06em; font-variant-numeric:tabular-nums; vertical-align:1px}
+  @media (prefers-reduced-motion:reduce){ .mast::before,.mast-addr dt i{animation:none} }
   @media (max-width:900px){
-    .lh{flex-direction:column; gap:16px}
-    .lh-addr{text-align:left}
-    .lh-addr div{justify-content:flex-start; flex-direction:column; gap:0}
-    .lh-addr dt{text-align:left}
+    .mast{flex-direction:column; align-items:flex-start; gap:24px; padding-bottom:24px}
+    .mast-addr{grid-template-columns:1fr 1fr; width:100%}
+    .mast-addr div{margin-left:20px; padding-left:20px}
+  }
+  @media (max-width:520px){
+    .mast-id{flex-direction:column; align-items:flex-start; gap:14px}
+    .mast-sep{display:none}
+    .mast-logo{height:24px}
+    .mast-addr{grid-template-columns:1fr; gap:16px}
+    .mast-addr div{margin-left:0; padding-left:14px; border-left:1px solid #232529}
+    .mast-addr div:first-child{padding-left:14px; border-left:1px solid #232529}
   }
   /* 미디어 · 연구 */
   .media{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr); gap:48px; margin-top:64px; align-items:start}
@@ -406,11 +424,15 @@
 
 <header class="hero dark" id="top">
   <div class="wrap">
-    <div class="lh">
-      <div class="lh-id"><img class="lh-brand" src="img/physio-logo.png" alt="PHYSIO INC" width="203" height="22"><span class="lh-who">유중경 · 주식회사 피지오 대표이사</span></div>
-      <dl class="lh-addr">
-        <div><dt>본사</dt><dd>[34839] 대전광역시 중구 중앙로 119, 대전테크노파크 디스테이션</dd></div>
-        <div><dt>충북지사</dt><dd>[28673] 충청북도 청주시 서원구 서원서로 30-23 3층, SK하이닉스 창업관</dd></div>
+    <div class="mast">
+      <div class="mast-id">
+        <img class="mast-logo" src="img/physio-logo-volt.png" alt="PHYSIO INC" width="240" height="26">
+        <span class="mast-sep" aria-hidden="true"></span>
+        <p class="mast-who"><b>유중경</b><span>주식회사 피지오 대표이사 · Founder &amp; CEO</span></p>
+      </div>
+      <dl class="mast-addr">
+        <div><dt><i></i>HQ · 본사</dt><dd>대전광역시 중구 중앙로 119<br>대전테크노파크 디스테이션<small>34839</small></dd></div>
+        <div><dt><i></i>BRANCH · 충북지사</dt><dd>충청북도 청주시 서원구 서원서로 30-23 3층<br>SK하이닉스 창업관<small>28673</small></dd></div>
       </dl>
     </div>
     <div class="hero-body">
